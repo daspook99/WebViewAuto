@@ -1,12 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginTop="@dimen/car_card_margin"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/browser_url_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/browser_url_menu"
+            app:font="@font/materialdesignicons"
+            android:fontFamily="@font/materialdesignicons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#ff04786d"
+            android:textColor="@android:color/white"
+            android:text="@string/key_menu" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/browser_url_keyboard_toggle"
+            app:font="@font/materialdesignicons"
+            android:fontFamily="@font/materialdesignicons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#ff04786d"
+            android:textColor="@android:color/white"
+            android:text="@string/key_keyboard" />
+
+        <EditText
+            android:id="@+id/browser_url_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:text="" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/browser_url_backspace"
+            app:font="@font/materialdesignicons"
+            android:fontFamily="@font/materialdesignicons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#ff04786d"
+            android:textColor="@android:color/white"
+            android:text="@string/key_backspace" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/browser_url_ok"
+            app:font="@font/materialdesignicons"
+            android:fontFamily="@font/materialdesignicons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#ff04786d"
+            android:textColor="@android:color/white"
+            android:text="@string/key_enter" />
+
+    </LinearLayout>
+
 
     <WebView
         android:id="@+id/webview_component"
