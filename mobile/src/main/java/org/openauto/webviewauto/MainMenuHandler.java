@@ -3,8 +3,6 @@ package org.openauto.webviewauto;
 import com.google.android.apps.auto.sdk.MenuController;
 import com.google.android.apps.auto.sdk.MenuItem;
 
-import org.openauto.webviewauto.fragments.BrowserFragment;
-
 public class MainMenuHandler {
 
 
@@ -13,16 +11,16 @@ public class MainMenuHandler {
         ListMenuAdapter mainMenu = new ListMenuAdapter();
         mainMenu.setCallbacks(MainMenuHandler.createMenuCallbacks(activity));
 
-        mainMenu.addMenuItem("MENU_BROWSER", new MenuItem.Builder()
-                .setTitle("Browser")
+        mainMenu.addMenuItem("MENU_HOME", new MenuItem.Builder()
+                .setTitle("Home")
                 .setType(MenuItem.Type.ITEM)
                 .build());
-        mainMenu.addMenuItem("MENU_CHANGE_URL", new MenuItem.Builder()
-                .setTitle("Change URL")
+        mainMenu.addMenuItem("MENU_BACK", new MenuItem.Builder()
+                .setTitle("Back")
                 .setType(MenuItem.Type.ITEM)
                 .build());
-        mainMenu.addMenuItem("MENU_KEYBOARD", new MenuItem.Builder()
-                .setTitle("Keyboard")
+        mainMenu.addMenuItem("MENU_FAVORITES", new MenuItem.Builder()
+                .setTitle("Favorites")
                 .setType(MenuItem.Type.ITEM)
                 .build());
 
@@ -39,15 +37,13 @@ public class MainMenuHandler {
             @Override
             public void onMenuItemClicked(String name) {
                 if("MENU_BROWSER".equals(name)){
-                    activity.toggleKeyboard();
+
                 }
                 if("MENU_CHANGE_URL".equals(name)){
-                    activity.currentMenuItem = "MENU_CHANGE_URL";
-                    activity.toggleKeyboard();
+
                 }
                 if("MENU_KEYBOARD".equals(name)){
-                    activity.currentMenuItem = "MENU_KEYBOARD";
-                    activity.toggleKeyboard();
+
                 }
             }
 

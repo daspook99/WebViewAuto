@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 
 import com.google.android.apps.auto.sdk.CarActivity;
 import com.google.android.apps.auto.sdk.CarUiController;
-import com.google.android.apps.auto.sdk.StatusBarController;
 
 import org.openauto.webviewauto.fragments.BrowserFragment;
 
@@ -25,10 +24,16 @@ import java.util.List;
 
 public class WebViewAutoActivity extends CarActivity {
 
+    private enum BrowserInputMode {
+        URL_INPUT_MODE, CONTENT_INPUT_MODE
+    }
+
     private static final String CURRENT_FRAGMENT_KEY = "app_current_fragment";
     private String mCurrentFragmentTag;
-    public String currentMenuItem = "MENU_CHANGE_URL";
-    public String currentURL = "https://duckduckgo.com";
+
+    public String homeURL = "https://duckduckgo.com";
+    public String currentURL = homeURL;
+    public BrowserInputMode inputMode = BrowserInputMode.URL_INPUT_MODE;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -60,9 +65,11 @@ public class WebViewAutoActivity extends CarActivity {
         MainMenuHandler.buildMainMenu(this);
 
         //Status bar controller
-        StatusBarController statusBarController = carUiController.getStatusBarController();
-        statusBarController.setAppBarAlpha(0.5f);
-        statusBarController.setAppBarBackgroundColor(0xffff0000);
+        getCarUiController().getMenuController().hideMenuButton();
+        getCarUiController().getStatusBarController().hideMicButton();
+        getCarUiController().getStatusBarController().hideTitle();
+        getCarUiController().getStatusBarController().hideAppHeader();
+        getCarUiController().getStatusBarController().setAppBarAlpha(0f);
 
         getSupportFragmentManager().registerFragmentLifecycleCallbacks(mFragmentLifecycleCallbacks,
                 false);
@@ -117,41 +124,24 @@ public class WebViewAutoActivity extends CarActivity {
         }
     }
 
-    public void toggleKeyboard() {
+    public void showKeyboard() {
         WebView webview = (WebView)findViewById(R.id.webview_component);
         LinearLayout keyboard = (LinearLayout)findViewById(R.id.browser_keyboard);
-        final EditText input_content = (EditText)findViewById(R.id.browser_keyboard_edittext);
-
-        if(currentMenuItem.equals("MENU_CHANGE_URL")){
-            input_content.setText(currentURL);
-        } else {
-            input_content.setText("");
-        }
-
-        if(webview.getVisibility() != View.GONE){
-            webview.setVisibility(View.GONE);
-            keyboard.setVisibility(View.VISIBLE);
-        } else {
-            webview.setVisibility(View.VISIBLE);
-            keyboard.setVisibility(View.GONE);
-        }
+        webview.setVisibility(View.GONE);
+        keyboard.setVisibility(View.VISIBLE);
     }
 
-    public void enterToWebview(String input) {
+    public void hideKeyboard() {
         WebView webview = (WebView)findViewById(R.id.webview_component);
-        webview.evaluateJavascript("document.activeElement.value = '" + input + "';", null);
+        LinearLayout keyboard = (LinearLayout)findViewById(R.id.browser_keyboard);
+        webview.setVisibility(View.VISIBLE);
+        keyboard.setVisibility(View.GONE);
     }
-
-    public void changeURL(String input) {
-        WebView webview = (WebView)findViewById(R.id.webview_component);
-        webview.loadUrl(input);
-        currentURL = input;
-    }
-
 
     @SuppressLint("SetJavaScriptEnabled")
     public void updateBrowserFragment(Fragment fragment) {
 
+        //load web view
         WebView wbb = (WebView)findViewById(R.id.webview_component);
         WebSettings wbset=wbb.getSettings();
         wbset.setJavaScriptEnabled(true);
@@ -159,8 +149,56 @@ public class WebViewAutoActivity extends CarActivity {
         wbb.setWebViewClient(new WebViewClient());
         wbb.loadUrl(currentURL);
 
+        //init ui elements
+        final EditText browser_url_input = (EditText)findViewById(R.id.browser_url_input);
+        final LinearLayout keyboard = (LinearLayout)findViewById(R.id.browser_keyboard);
+        browser_url_input.setText(currentURL);
+
+        findViewById(R.id.browser_url_menu).setOnClickListener(view -> {
+            //open menu -> Features todo: Favorites, Back, Forward etc.
+            wbb.loadUrl(homeURL);
+            currentURL = homeURL;
+            browser_url_input.setText(currentURL);
+        });
+        findViewById(R.id.browser_url_keyboard_toggle).setOnClickListener(view -> {
+            if(browser_url_input.hasFocus() && keyboard.getVisibility() == View.GONE){
+                inputMode = BrowserInputMode.URL_INPUT_MODE;
+                showKeyboard();
+                return;
+            }
+            if(!browser_url_input.hasFocus() && keyboard.getVisibility() == View.GONE){
+                inputMode = BrowserInputMode.CONTENT_INPUT_MODE;
+                browser_url_input.setText("");
+                showKeyboard();
+                return;
+            }
+            if(keyboard.getVisibility() == View.VISIBLE){
+                hideKeyboard();
+            }
+        });
+        findViewById(R.id.browser_url_backspace).setOnClickListener(view -> {
+            String oldContent = browser_url_input.getText().toString();
+            if(oldContent.length() != 0){
+                int start = browser_url_input.getSelectionStart();
+                browser_url_input.getText().delete(start-1, start);
+            }
+        });
+        findViewById(R.id.browser_url_ok).setOnClickListener(view -> {
+            if(inputMode == BrowserInputMode.URL_INPUT_MODE){
+                currentURL = browser_url_input.getText().toString();
+                browser_url_input.setText(currentURL);
+                wbb.loadUrl(currentURL);
+            }
+            if(inputMode == BrowserInputMode.CONTENT_INPUT_MODE){
+                wbb.evaluateJavascript("document.activeElement.value = '" + browser_url_input.getText().toString() + "';", null);
+                browser_url_input.setText(currentURL);
+            }
+            //remove keyboard
+            hideKeyboard();
+        });
+
+
         //initialize keyboard
-        final EditText input_content = (EditText)findViewById(R.id.browser_keyboard_edittext);
         LinearLayout keyboard_layout = (LinearLayout)findViewById(R.id.keyboard_layout);
         List<View> children = UIUtils.getAllChildrenBFS(keyboard_layout);
         for(View v : children){
@@ -168,26 +206,6 @@ public class WebViewAutoActivity extends CarActivity {
                 ((AppCompatButton) v).setAllCaps(false);
                 v.setOnClickListener(view -> {
                     AppCompatButton btn = (AppCompatButton) view;
-                    //handle special keys
-                    if(btn.getText().toString().equals(getResources().getString(R.string.key_enter))){
-                        if(currentMenuItem.equals("MENU_CHANGE_URL")){
-                            changeURL(input_content.getText().toString());
-                        }
-                        if(currentMenuItem.equals("MENU_KEYBOARD")){
-                            enterToWebview(input_content.getText().toString());
-                        }
-                        toggleKeyboard();
-                        return;
-                    }
-                    if(btn.getText().toString().equals(getResources().getString(R.string.key_backspace))){
-
-                        String oldContent = input_content.getText().toString();
-                        if(oldContent.length() != 0){
-                            int start = input_content.getSelectionStart();
-                            input_content.getText().delete(start-1, start);
-                        }
-                        return;
-                    }
                     if(btn.getText().toString().equals(getResources().getString(R.string.key_caps))){
                         for(View letter : children){
                             if(letter instanceof AppCompatButton) {
@@ -202,7 +220,7 @@ public class WebViewAutoActivity extends CarActivity {
                         return;
                     }
                     //letter number symbols
-                    input_content.getText().insert(input_content.getSelectionStart(), btn.getText());
+                    browser_url_input.getText().insert(browser_url_input.getSelectionStart(), btn.getText());
                 });
             }
         }
