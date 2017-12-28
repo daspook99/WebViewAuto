@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WebViewAuto</string>
+    <string name="key_at">\@</string>
+    <string name="key_qm">\?</string>
+    <string name="key_slash">\u005C</string>
+    <string name="key_and">&amp;</string>
+    <string name="key_backspace">\uF06E</string>
+    <string name="key_enter">\uF5E0</string>
+    <string name="key_caps">\uF30E</string>
+</resources>

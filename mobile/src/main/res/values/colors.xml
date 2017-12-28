@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff404d</color>
+
+    <color name="car_body1_inverted">@color/car_body1_light</color>
+    <color name="cardview_background">@color/cardview_light_background</color>
+
+</resources>
