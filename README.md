@@ -1,5 +1,10 @@
 # Android Auto compatible browser app
 
+## Warning:
+
+DO NOT USE WHILE DRIVING! KEEP YOUR EYES ON THE ROAD! BAD THINGS CAN HAPPEN!
+I am not responsible for any damage caused by this application.
+
 ## Dependencies:
 
 - https://github.com/martoreto/aauto-sdk (The piece of code which made OEM apps for AA possible in the first place - Good Job!)
