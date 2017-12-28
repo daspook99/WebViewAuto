@@ -27,7 +27,7 @@ public class WebViewAutoActivity extends CarActivity {
 
     private static final String CURRENT_FRAGMENT_KEY = "app_current_fragment";
     private String mCurrentFragmentTag;
-    public String currentMenuItem;
+    public String currentMenuItem = "MENU_CHANGE_URL";
     public String currentURL = "https://duckduckgo.com";
 
     @Override
@@ -145,6 +145,7 @@ public class WebViewAutoActivity extends CarActivity {
     public void changeURL(String input) {
         WebView webview = (WebView)findViewById(R.id.webview_component);
         webview.loadUrl(input);
+        currentURL = input;
     }
 
 

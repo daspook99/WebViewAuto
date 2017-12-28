@@ -39,7 +39,7 @@ public class MainMenuHandler {
             @Override
             public void onMenuItemClicked(String name) {
                 if("MENU_BROWSER".equals(name)){
-                    activity.switchToFragment(BrowserFragment.TAG);
+                    activity.toggleKeyboard();
                 }
                 if("MENU_CHANGE_URL".equals(name)){
                     activity.currentMenuItem = "MENU_CHANGE_URL";
