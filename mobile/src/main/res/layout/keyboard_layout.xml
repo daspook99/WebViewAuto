@@ -10,6 +10,41 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+    <EditText
+        android:id="@+id/browser_keyboard_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:ems="10"
+        android:text="" />
+
+        <android.support.v7.widget.AppCompatButton
+            app:font="@font/materialdesignicons"
+            android:fontFamily="@font/materialdesignicons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#ff04786d"
+            android:textColor="@android:color/white"
+            android:text="@string/key_backspace" />
+
+    <android.support.v7.widget.AppCompatButton
+        app:font="@font/materialdesignicons"
+        android:fontFamily="@font/materialdesignicons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="#ff04786d"
+        android:textColor="@android:color/white"
+        android:text="@string/key_enter" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <android.support.v7.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="+" />
+            android:text=":" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="wrap_content"
@@ -152,17 +187,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="0" />
+            android:text="-" />
 
         <android.support.v7.widget.AppCompatButton
-            app:font="@font/materialdesignicons"
-            android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#ff04786d"
-            android:textColor="@android:color/white"
-            android:text="@string/key_backspace" />
+            android:text="_" />
 
     </LinearLayout>
 
@@ -238,14 +269,10 @@
             android:text="Ü" />
 
         <android.support.v7.widget.AppCompatButton
-            app:font="@font/materialdesignicons"
-            android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#ff04786d"
-            android:textColor="@android:color/white"
-            android:text="@string/key_enter" />
+            android:text="+" />
 
     </LinearLayout>
 
@@ -255,14 +282,10 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatButton
-            app:font="@font/materialdesignicons"
-            android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#ff04786d"
-            android:textColor="@android:color/white"
-            android:text="@string/key_caps" />
+            android:text="." />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="wrap_content"
@@ -338,10 +361,14 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatButton
+            app:font="@font/materialdesignicons"
+            android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="." />
+            android:backgroundTint="#ff04786d"
+            android:textColor="@android:color/white"
+            android:text="@string/key_caps" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="wrap_content"
@@ -376,6 +403,13 @@
         <android.support.v7.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#ff04786d"
+            android:layout_weight="1"
+            android:text=" " />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="B" />
 
@@ -404,12 +438,7 @@
             android:text="," />
 
 
-        <android.support.v7.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=":" />
-
     </LinearLayout>
+
 
 </LinearLayout>

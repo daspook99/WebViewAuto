@@ -22,13 +22,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/browser_keyboard_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="" />
-
         <include layout="@layout/keyboard_layout"/>
 
     </LinearLayout>
