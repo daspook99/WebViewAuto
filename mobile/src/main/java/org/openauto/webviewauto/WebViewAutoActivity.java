@@ -179,10 +179,11 @@ public class WebViewAutoActivity extends CarActivity {
                         return;
                     }
                     if(btn.getText().toString().equals(getResources().getString(R.string.key_backspace))){
+
                         String oldContent = input_content.getText().toString();
                         if(oldContent.length() != 0){
-                            String newInput = oldContent.substring(0, oldContent.length()-1);
-                            input_content.setText(newInput);
+                            int start = input_content.getSelectionStart();
+                            input_content.getText().delete(start-1, start);
                         }
                         return;
                     }
