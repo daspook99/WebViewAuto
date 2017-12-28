@@ -5,6 +5,8 @@
     <string name="key_slash">\u005C</string>
     <string name="key_and">&amp;</string>
     <string name="key_backspace">\uF06E</string>
+    <string name="key_menu">\uF35C</string>
+    <string name="key_keyboard">\uF30C</string>
     <string name="key_enter">\uF5E0</string>
     <string name="key_caps">\uF30E</string>
 </resources>
