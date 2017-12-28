@@ -14,6 +14,12 @@ I am not responsible for any damage caused by this application.
 - Change URL
 - Input text into HTML fields
 
+## TO-DO:
+
+- Favorite system
+- Back
+- Auto-show keyboard when clicking on an <input> in HTML
+
 ## How to use:
 
 - Build and install APK (If you want to skip the build, [download APK here](https://github.com/nerone-github/WebViewAuto/raw/master/apk/webviewauto.apk).
@@ -28,3 +34,4 @@ I am not responsible for any damage caused by this application.
 ![alt text](https://raw.githubusercontent.com/nerone-github/WebViewAuto/master/images/browser1.png)
 ![alt text](https://raw.githubusercontent.com/nerone-github/WebViewAuto/master/images/browser2.png)
 ![alt text](https://raw.githubusercontent.com/nerone-github/WebViewAuto/master/images/browser3.png)
+![alt text](https://raw.githubusercontent.com/nerone-github/WebViewAuto/master/images/browser4.png)
