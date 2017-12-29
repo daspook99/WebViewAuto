@@ -37,12 +37,12 @@ public class WebViewAutoActivity extends CarActivity {
 
     @Override
     public void onCreate(Bundle bundle) {
+
+        //android.os.Debug.waitForDebugger();
+
         setTheme(R.style.AppTheme_Car);
         super.onCreate(bundle);
         setContentView(R.layout.activity_car_main);
-
-        CarUiController carUiController = getCarUiController();
-        carUiController.getStatusBarController().showTitle();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -138,6 +138,14 @@ public class WebViewAutoActivity extends CarActivity {
         keyboard.setVisibility(View.GONE);
     }
 
+    public void changeURL(String url){
+        WebView wbb = (WebView)findViewById(R.id.webview_component);
+        final EditText browser_url_input = (EditText)findViewById(R.id.browser_url_input);
+        wbb.loadUrl(url);
+        currentURL = url;
+        browser_url_input.setText(url);
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     public void updateBrowserFragment(Fragment fragment) {
 
@@ -156,9 +164,7 @@ public class WebViewAutoActivity extends CarActivity {
 
         findViewById(R.id.browser_url_menu).setOnClickListener(view -> {
             //open menu -> Features todo: Favorites, Back, Forward etc.
-            wbb.loadUrl(homeURL);
-            currentURL = homeURL;
-            browser_url_input.setText(currentURL);
+            getCarUiController().getDrawerController().openDrawer();
         });
         findViewById(R.id.browser_url_keyboard_toggle).setOnClickListener(view -> {
             if(browser_url_input.hasFocus() && keyboard.getVisibility() == View.GONE){

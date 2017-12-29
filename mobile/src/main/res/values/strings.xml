@@ -9,4 +9,8 @@
     <string name="key_keyboard">\uF30C</string>
     <string name="key_enter">\uF5E0</string>
     <string name="key_caps">\uF30E</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_back">Back</string>
+    <string name="menu_favorites">Favorites</string>
+
 </resources>
