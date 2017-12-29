@@ -203,6 +203,10 @@ public class WebViewAutoActivity extends CarActivity {
             hideKeyboard();
         });
 
+        findViewById(R.id.browser_url_submit).setOnClickListener(view -> {
+            wbb.evaluateJavascript("document.activeElement.form.submit();", null);
+        });
+
 
         //initialize keyboard
         LinearLayout keyboard_layout = (LinearLayout)findViewById(R.id.keyboard_layout);

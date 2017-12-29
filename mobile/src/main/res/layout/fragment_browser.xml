@@ -38,7 +38,7 @@
             android:id="@+id/browser_url_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:ems="10"
             android:text="" />
 
@@ -63,6 +63,17 @@
             android:backgroundTint="#ff04786d"
             android:textColor="@android:color/white"
             android:text="@string/key_enter" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/browser_url_submit"
+            app:font="@font/materialdesignicons"
+            android:fontFamily="@font/materialdesignicons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#ff04786d"
+            android:textColor="@android:color/white"
+            android:text="@string/key_submit" />
 
     </LinearLayout>
 
