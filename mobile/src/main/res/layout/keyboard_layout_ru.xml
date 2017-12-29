@@ -27,11 +27,11 @@
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="]" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="(" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text=")" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="|" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="%" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="/" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/key_slash" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="&lt;" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="&gt;" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="." />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="," />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="~" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="´" />
     </LinearLayout>
@@ -54,47 +54,47 @@
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="+" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="q" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="w" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="e" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="r" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="t" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="y" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="u" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="i" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="o" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="p" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ü" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="%" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="й" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ц" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="у" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="к" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="е" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="н" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="г" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ш" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="щ" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="з" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="х" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ъ" />
     </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="*" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="a" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="s" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="d" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="f" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="g" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="h" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="j" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="k" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="l" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ö" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ä" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ф" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ы" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="в" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="а" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="п" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="р" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="о" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="л" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="д" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ж" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="э" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text=":" />
     </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
         <android.support.v7.widget.AppCompatButton app:font="@font/materialdesignicons" android:fontFamily="@font/materialdesignicons" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:backgroundTint="#ff04786d" android:textColor="@android:color/white" android:text="@string/key_caps" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="z" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="x" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="c" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="v" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="b" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="n" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="m" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="," />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="." />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="я" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ч" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="с" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="м" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="и" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="т" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ь" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="б" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="ю" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="-" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="_" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text=";" />
@@ -106,7 +106,7 @@
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="www." />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:backgroundTint="#ff04786d" android:layout_weight="1" android:text=" " />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text=".com" />
-        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text=".de" />
+        <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text=".ru" />
         <android.support.v7.widget.AppCompatButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text=".org" />
     </LinearLayout>
 
