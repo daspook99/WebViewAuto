@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import com.google.android.apps.auto.sdk.CarActivity;
 
 import org.openauto.webviewauto.fragments.BrowserFragment;
+import org.openauto.webviewauto.utils.UIUtils;
 
 import java.util.Arrays;
 import java.util.List;

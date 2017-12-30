@@ -1,4 +1,4 @@
-package org.openauto.webviewauto;
+package org.openauto.webviewauto.utils;
 
 import android.content.Context;
 import android.content.res.AssetManager;
