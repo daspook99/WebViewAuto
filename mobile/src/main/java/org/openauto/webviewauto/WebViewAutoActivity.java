@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.apps.auto.sdk.CarActivity;
-import com.google.android.apps.auto.sdk.CarUiController;
 
 import org.openauto.webviewauto.fragments.BrowserFragment;
 
