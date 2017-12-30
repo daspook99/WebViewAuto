@@ -28,11 +28,11 @@ public class MainMenuHandler {
                 .setType(MenuItem.Type.SUBMENU)
                 .build());
 
-        FavoriteManager.getFavorites();
+        FavoriteManager favoriteManager = new FavoriteManager(activity);
 
         ListMenuAdapter favMenu = new ListMenuAdapter();
         favMenu.setCallbacks(MainMenuHandler.createMenuCallbacks(activity, mainMenu));
-        for(FavoriteEnt fav : FavoriteManager.getFavorites()){
+        for(FavoriteEnt fav : favoriteManager.favorites){
             favMenu.addMenuItem(fav.getId(), new MenuItem.Builder()
                     .setTitle(fav.getTitle())
                     .setType(MenuItem.Type.ITEM)
@@ -61,7 +61,8 @@ public class MainMenuHandler {
                     //TODO: implement a history
                 }
                 if(name.startsWith("MENU_FAVORITES_")){
-                   activity.changeURL(FavoriteManager.getFavoriteById(name).getUrl());
+                   FavoriteManager favoriteManager = new FavoriteManager(activity);
+                   activity.changeURL(favoriteManager.getFavoriteById(name).getUrl());
                 }
             }
 

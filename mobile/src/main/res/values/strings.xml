@@ -15,5 +15,6 @@
     <string name="menu_favorites">Favorites</string>
     <string name="button_label_ok">OK</string>
     <string name="button_label_cancel">Cancel</string>
+    <string name="button_label_remove">Remove</string>
 
 </resources>
