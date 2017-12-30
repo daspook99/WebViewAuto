@@ -5,12 +5,10 @@ import android.util.Log;
 import com.google.android.apps.auto.sdk.MenuController;
 import com.google.android.apps.auto.sdk.MenuItem;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.openauto.webviewauto.favorites.FavoriteEnt;
+import org.openauto.webviewauto.favorites.FavoriteManager;
 
 public class MainMenuHandler {
-
-    public static Map<String,String> favorites = new HashMap();
 
     public static void buildMainMenu(final WebViewAutoActivity activity){
 
@@ -30,17 +28,13 @@ public class MainMenuHandler {
                 .setType(MenuItem.Type.SUBMENU)
                 .build());
 
-        //Build menu for favorites, TODO: Dynamic favorite handling (Add fav, Remove fav)
-        favorites.put("MENU_FAVORITES_YOUTUBE|YouTube", "https://www.youtube.com/");
-        favorites.put("MENU_FAVORITES_GOOGLE|Google", "https://www.google.com/");
-        favorites.put("MENU_FAVORITES_BBC|BBC", "http://www.bbc.com/");
-        favorites.put("MENU_FAVORITES_WIKI|Wikipedia", "https://www.wikipedia.org/");
+        FavoriteManager.getFavorites();
 
         ListMenuAdapter favMenu = new ListMenuAdapter();
         favMenu.setCallbacks(MainMenuHandler.createMenuCallbacks(activity, mainMenu));
-        for(Map.Entry e : favorites.entrySet()){
-            favMenu.addMenuItem((String)e.getKey(), new MenuItem.Builder()
-                    .setTitle(((String) e.getKey()).split("\\|")[1])
+        for(FavoriteEnt fav : FavoriteManager.getFavorites()){
+            favMenu.addMenuItem(fav.getId(), new MenuItem.Builder()
+                    .setTitle(fav.getTitle())
                     .setType(MenuItem.Type.ITEM)
                     .build());
         }
@@ -67,7 +61,7 @@ public class MainMenuHandler {
                     //TODO: implement a history
                 }
                 if(name.startsWith("MENU_FAVORITES_")){
-                   activity.changeURL(favorites.get(name));
+                   activity.changeURL(FavoriteManager.getFavoriteById(name).getUrl());
                 }
             }
 
