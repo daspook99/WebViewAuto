@@ -47,13 +47,21 @@ public class WebViewPhoneActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             rowContainer.setOrientation(LinearLayout.HORIZONTAL);
-
-            TextView textView = new TextView(getApplicationContext());
-            textView.setText(e.getUrl());
-            textView.setLayoutParams(new ViewGroup.LayoutParams(
+            //TITLE
+            TextView textViewT = new TextView(getApplicationContext());
+            textViewT.setText(e.getTitle());
+            textViewT.setLayoutParams(new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
-            rowContainer.addView(textView);
+            rowContainer.addView(textViewT);
+            //URL
+            TextView textViewU = new TextView(getApplicationContext());
+            textViewU.setText(e.getUrl());
+            textViewU.setLayoutParams(new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            rowContainer.addView(textViewU);
+            //Remove Button
             Button removeButton = new Button(getApplicationContext());
             removeButton.setLayoutParams(new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
