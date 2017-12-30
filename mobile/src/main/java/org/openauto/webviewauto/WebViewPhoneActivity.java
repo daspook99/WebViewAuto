@@ -49,6 +49,7 @@ public class WebViewPhoneActivity extends AppCompatActivity {
             rowContainer.setOrientation(LinearLayout.HORIZONTAL);
             //TITLE
             TextView textViewT = new TextView(getApplicationContext());
+            textViewT.setPadding(15,15,15,15);
             textViewT.setText(e.getTitle());
             textViewT.setLayoutParams(new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -56,6 +57,7 @@ public class WebViewPhoneActivity extends AppCompatActivity {
             rowContainer.addView(textViewT);
             //URL
             TextView textViewU = new TextView(getApplicationContext());
+            textViewU.setPadding(15,15,15,15);
             textViewU.setText(e.getUrl());
             textViewU.setLayoutParams(new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
