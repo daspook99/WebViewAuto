@@ -38,6 +38,8 @@ public class WebViewPhoneActivity extends AppCompatActivity {
 
     private void reloadFavList(){
         LinearLayout favorite_container = findViewById(R.id.favorite_container);
+        favorite_container.removeAllViews();
+
         FavoriteManager favoriteManager = new FavoriteManager(this);
         for(FavoriteEnt e : favoriteManager.favorites){
             LinearLayout rowContainer = new LinearLayout(getApplicationContext());

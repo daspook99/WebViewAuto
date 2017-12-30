@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Title" />
+            android:hint="Title" />
 
         <EditText
             android:id="@+id/new_fav_url"
@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="URL" />
+            android:hint="URL" />
 
         <Button
             android:id="@+id/add_favorite_button"
