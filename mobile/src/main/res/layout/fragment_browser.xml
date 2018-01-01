@@ -10,6 +10,7 @@
         android:id="@+id/browser_url_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/url_background_color"
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatButton
@@ -39,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:textColor="@color/url_text_color"
             android:ems="10"
             android:text="" />
 
@@ -92,7 +94,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/keyboard_layout"/>
 
     </LinearLayout>
 

@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import com.google.android.apps.auto.sdk.CarActivity;
 
 import org.openauto.webviewauto.fragments.BrowserFragment;
+import org.openauto.webviewauto.keyboard.KeyboardViewCreator;
 import org.openauto.webviewauto.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -173,6 +174,10 @@ public class WebViewAutoActivity extends CarActivity {
         final LinearLayout keyboard = (LinearLayout)findViewById(R.id.browser_keyboard);
         browser_url_input.setText(currentURL);
 
+        //init keyboard
+        keyboard.removeAllViews();
+        keyboard.addView(KeyboardViewCreator.createKeyboardView(fragment.getContext(), "LATIN"));
+
         findViewById(R.id.browser_url_menu).setOnClickListener(view -> {
             //open menu -> Features todo: Favorites, Back, Forward etc.
             getCarUiController().getDrawerController().openDrawer();
@@ -219,7 +224,7 @@ public class WebViewAutoActivity extends CarActivity {
 
 
         //initialize keyboard
-        LinearLayout keyboard_layout = (LinearLayout)findViewById(R.id.keyboard_layout);
+        LinearLayout keyboard_layout = (LinearLayout)findViewById(R.id.browser_keyboard);
         List<View> children = UIUtils.getAllChildrenBFS(keyboard_layout);
         for(View v : children){
             if(v instanceof AppCompatButton){
