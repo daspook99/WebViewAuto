@@ -12,13 +12,12 @@ I am not responsible for any damage caused by this application.
 ## Features:
 
 - Change URL
+- Manage favorites via the phone app, and access them on Android Auto
 - Input text into HTML fields
 
-## TO-DO:
+## Nice-To-Know
 
-- Favorite system
-- Back
-- Auto-show keyboard when clicking on an <input> in HTML
+- You can use this app to listen to webradio, just add the stream link to favorites and play the URL
 
 ## How to use:
 

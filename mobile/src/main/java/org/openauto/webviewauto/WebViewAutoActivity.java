@@ -19,6 +19,7 @@ import com.google.android.apps.auto.sdk.CarActivity;
 import org.openauto.webviewauto.fragments.BrowserFragment;
 import org.openauto.webviewauto.utils.UIUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class WebViewAutoActivity extends CarActivity {
     public String homeURL = "https://duckduckgo.com";
     public String currentURL = homeURL;
     public BrowserInputMode inputMode = BrowserInputMode.URL_INPUT_MODE;
+
+    public List<String> urlHistory = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -139,11 +142,18 @@ public class WebViewAutoActivity extends CarActivity {
     }
 
     public void changeURL(String url){
-        WebView wbb = (WebView)findViewById(R.id.webview_component);
+        //set the new url into the url input bar
         final EditText browser_url_input = (EditText)findViewById(R.id.browser_url_input);
-        wbb.loadUrl(url);
-        currentURL = url;
         browser_url_input.setText(url);
+        //load the new url
+        WebView wbb = (WebView)findViewById(R.id.webview_component);
+        wbb.loadUrl(url);
+        //remember the current url
+        currentURL = url;
+        //add url to history if last item is not already in the history
+        if(!urlHistory.isEmpty() && !urlHistory.get(urlHistory.size()-1).equals(url)){
+            urlHistory.add(url);
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -156,6 +166,7 @@ public class WebViewAutoActivity extends CarActivity {
         wbb.setWebChromeClient(new WebChromeClient());
         wbb.setWebViewClient(new WebViewClient());
         wbb.loadUrl(currentURL);
+        urlHistory.add(currentURL);
 
         //init ui elements
         final EditText browser_url_input = (EditText)findViewById(R.id.browser_url_input);
@@ -191,9 +202,8 @@ public class WebViewAutoActivity extends CarActivity {
         });
         findViewById(R.id.browser_url_ok).setOnClickListener(view -> {
             if(inputMode == BrowserInputMode.URL_INPUT_MODE){
-                currentURL = browser_url_input.getText().toString();
-                browser_url_input.setText(currentURL);
-                wbb.loadUrl(currentURL);
+                String newURL = browser_url_input.getText().toString();
+                changeURL(newURL);
             }
             if(inputMode == BrowserInputMode.CONTENT_INPUT_MODE){
                 wbb.evaluateJavascript("document.activeElement.value = '" + browser_url_input.getText().toString() + "';", null);

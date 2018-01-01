@@ -58,7 +58,12 @@ public class MainMenuHandler {
                     activity.changeURL(activity.homeURL);
                 }
                 if("MENU_BACK".equals(name)){
-                    //TODO: implement a history
+                    int historySize = activity.urlHistory.size();
+                    int newIndex = historySize - 2;
+                    if(newIndex > 0 && newIndex < historySize){
+                        String newURL = activity.urlHistory.get(newIndex);
+                        activity.changeURL(newURL);
+                    }
                 }
                 if(name.startsWith("MENU_FAVORITES_")){
                    FavoriteManager favoriteManager = new FavoriteManager(activity);
