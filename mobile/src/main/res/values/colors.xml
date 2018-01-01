@@ -7,4 +7,7 @@
     <color name="car_body1_inverted">@color/car_body1_light</color>
     <color name="cardview_background">@color/cardview_light_background</color>
 
+    <color name="url_background_color">#ffffff</color>
+    <color name="url_text_color">#000000</color>
+
 </resources>
