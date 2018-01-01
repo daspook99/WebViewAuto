@@ -2,7 +2,8 @@ package org.openauto.webviewauto;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import org.openauto.webviewauto.favorites.FavoriteEnt;
 import org.openauto.webviewauto.favorites.FavoriteManager;
+import org.openauto.webviewauto.utils.UIUtils;
 
 /**
  * Activity for phone
@@ -28,56 +30,42 @@ public class WebViewPhoneActivity extends AppCompatActivity {
         add_favorite_button.setOnClickListener(v -> {
             EditText new_fav_title = findViewById(R.id.new_fav_title);
             EditText new_fav_url = findViewById(R.id.new_fav_url);
-            FavoriteEnt newFav = new FavoriteEnt("MENU_FAVORITES_" + new_fav_title.getText().toString(), new_fav_title.getText().toString(), new_fav_url.getText().toString());
-            favoriteManager.addFavorite(newFav);
-            favoriteManager.persistFavorites();
-            reloadFavList();
+
+            if(!new_fav_title.getText().toString().isEmpty() && !new_fav_url.getText().toString().isEmpty()){
+                FavoriteEnt newFav = new FavoriteEnt("MENU_FAVORITES_" + new_fav_title.getText().toString(), new_fav_title.getText().toString(), new_fav_url.getText().toString());
+                favoriteManager.addFavorite(newFav);
+                favoriteManager.persistFavorites();
+                reloadFavList();
+            } else {
+                UIUtils.showSnackbar(this, "Title or URL is empty", 1000);
+            }
+
         });
 
     }
 
     private void reloadFavList(){
+
+        LayoutInflater inflater = getLayoutInflater();
         LinearLayout favorite_container = findViewById(R.id.favorite_container);
         favorite_container.removeAllViews();
 
         FavoriteManager favoriteManager = new FavoriteManager(this);
         for(FavoriteEnt e : favoriteManager.favorites){
-            LinearLayout rowContainer = new LinearLayout(getApplicationContext());
-            rowContainer.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            rowContainer.setOrientation(LinearLayout.HORIZONTAL);
-            //TITLE
-            TextView textViewT = new TextView(getApplicationContext());
-            textViewT.setPadding(15,15,15,15);
-            textViewT.setText(e.getTitle());
-            textViewT.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            rowContainer.addView(textViewT);
-            //URL
-            TextView textViewU = new TextView(getApplicationContext());
-            textViewU.setPadding(15,15,15,15);
-            textViewU.setText(e.getUrl());
-            textViewU.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            rowContainer.addView(textViewU);
-            //Remove Button
-            Button removeButton = new Button(getApplicationContext());
-            removeButton.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            removeButton.setText(getResources().getString(R.string.button_label_remove));
-            removeButton.setTag(e);
-            removeButton.setOnClickListener(v -> {
+
+            View favItemView = inflater.inflate(R.layout.activity_phone_main_fav_item, null);
+            TextView fav_item_title_tv = favItemView.findViewById(R.id.fav_item_title_tv);
+            fav_item_title_tv.setText(e.getTitle());
+            TextView fav_item_url_tv = favItemView.findViewById(R.id.fav_item_url_tv);
+            fav_item_url_tv.setText(e.getUrl());
+            Button fav_item_removebtn = favItemView.findViewById(R.id.fav_item_removebtn);
+            fav_item_removebtn.setTag(e);
+            fav_item_removebtn.setOnClickListener(v -> {
                 favoriteManager.removeFavorite((FavoriteEnt)v.getTag());
                 favoriteManager.persistFavorites();
                 reloadFavList();
             });
-            rowContainer.addView(removeButton);
-
-            favorite_container.addView(rowContainer);
+            favorite_container.addView(favItemView);
 
         }
     }

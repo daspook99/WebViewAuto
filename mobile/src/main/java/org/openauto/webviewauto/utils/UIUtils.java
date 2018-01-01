@@ -1,5 +1,7 @@
 package org.openauto.webviewauto.utils;
 
+import android.app.Activity;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -55,6 +57,11 @@ public class UIUtils {
             for (int i=0; i<childCount; i++) unvisited.add(group.getChildAt(i));
         }
         return visited;
+    }
+
+
+    public static void showSnackbar(Activity act, String msg, int length){
+        Snackbar.make(act.findViewById(android.R.id.content), msg, length).show();
     }
 
 }
