@@ -184,9 +184,9 @@ public class WebViewAutoActivity extends CarActivity {
         });
         findViewById(R.id.browser_url_backspace).setOnClickListener(view -> {
             String oldContent = browser_url_input.getText().toString();
-            if(oldContent.length() != 0){
-                int start = browser_url_input.getSelectionStart();
-                browser_url_input.getText().delete(start-1, start);
+            int selStart = browser_url_input.getSelectionStart();
+            if(oldContent.length() != 0 && selStart > 0){
+                browser_url_input.getText().delete(selStart-1, selStart);
             }
         });
         findViewById(R.id.browser_url_ok).setOnClickListener(view -> {
