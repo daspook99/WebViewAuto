@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -17,11 +16,9 @@ import android.widget.LinearLayout;
 import com.google.android.apps.auto.sdk.CarActivity;
 
 import org.openauto.webviewauto.fragments.BrowserFragment;
-import org.openauto.webviewauto.keyboard.KeyboardViewCreator;
-import org.openauto.webviewauto.utils.UIUtils;
+import org.openauto.webviewauto.keyboard.KeyboardHandler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class WebViewAutoActivity extends CarActivity {
@@ -36,6 +33,7 @@ public class WebViewAutoActivity extends CarActivity {
     public String homeURL = "https://duckduckgo.com";
     public String currentURL = homeURL;
     public BrowserInputMode inputMode = BrowserInputMode.URL_INPUT_MODE;
+    public String currentKeyboardLayout = "LATIN";
 
     public List<String> urlHistory = new ArrayList<>();
 
@@ -142,6 +140,11 @@ public class WebViewAutoActivity extends CarActivity {
         keyboard.setVisibility(View.GONE);
     }
 
+    public void keyInputCallback(String enteredKey){
+        final EditText browser_url_input = (EditText)findViewById(R.id.browser_url_input);
+        browser_url_input.getText().insert(browser_url_input.getSelectionStart(), enteredKey);
+    }
+
     public void changeURL(String url){
         //set the new url into the url input bar
         final EditText browser_url_input = (EditText)findViewById(R.id.browser_url_input);
@@ -176,7 +179,7 @@ public class WebViewAutoActivity extends CarActivity {
 
         //init keyboard
         keyboard.removeAllViews();
-        keyboard.addView(KeyboardViewCreator.createKeyboardView(fragment.getContext(), "LATIN"));
+        keyboard.addView(KeyboardHandler.createKeyboardView(this, fragment.getContext(), currentKeyboardLayout));
 
         findViewById(R.id.browser_url_menu).setOnClickListener(view -> {
             //open menu -> Features todo: Favorites, Back, Forward etc.
@@ -222,37 +225,6 @@ public class WebViewAutoActivity extends CarActivity {
             wbb.evaluateJavascript("document.activeElement.form.submit();", null);
         });
 
-
-        //initialize keyboard
-        LinearLayout keyboard_layout = (LinearLayout)findViewById(R.id.browser_keyboard);
-        List<View> children = UIUtils.getAllChildrenBFS(keyboard_layout);
-        for(View v : children){
-            if(v instanceof AppCompatButton){
-                ((AppCompatButton) v).setAllCaps(false);
-                v.setOnClickListener(view -> {
-                    AppCompatButton btn = (AppCompatButton) view;
-                    if(btn.getText().toString().equals(getResources().getString(R.string.key_caps))){
-                        for(View letter : children){
-                            if(letter instanceof AppCompatButton) {
-                                AppCompatButton lbtn = (AppCompatButton) letter;
-                                String[] letters = "qwertzuiopüasdfghjklöäyxcvbnm".split("");
-                                String letterChar = lbtn.getText().toString().toLowerCase();
-                                if (Arrays.asList(letters).contains(letterChar)) {
-                                    lbtn.setText(UIUtils.swapCase(lbtn.getText().toString()));
-                                }
-                            }
-                        }
-                        return;
-                    }
-                    //letter number symbols
-                    browser_url_input.getText().insert(browser_url_input.getSelectionStart(), btn.getText());
-                });
-            }
-        }
-
-
-
     }
-
 
 }

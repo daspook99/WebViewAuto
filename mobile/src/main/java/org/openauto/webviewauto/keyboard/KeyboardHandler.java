@@ -10,11 +10,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import org.openauto.webviewauto.R;
+import org.openauto.webviewauto.WebViewAutoActivity;
+import org.openauto.webviewauto.utils.UIUtils;
+
+import java.util.Arrays;
+import java.util.List;
 
 /*
     Create keyboard view programmatically
  */
-public class KeyboardViewCreator {
+public class KeyboardHandler {
 
     private static String[] row_1_shared = {"!","?","#","@","€","$","\u20BD","\"","=","§","&","°","`"};
     private static String[] row_2_shared = {"{","}","[","]","(",")","|","/","\\","<",">","~","´"};
@@ -33,7 +38,7 @@ public class KeyboardViewCreator {
     private static Object[] layout_latin = {row_1_shared, row_2_shared, row_3_shared, row_4_latin, row_5_latin, row_6_latin, row_7_latin};
     private static Object[] layout_russian = {row_1_shared, row_2_shared, row_3_shared, row_4_russian, row_5_russian, row_6_russian, row_7_russian};
 
-    public static View createKeyboardView(Context context, String iso){
+    public static View createKeyboardView(WebViewAutoActivity activity, Context context, String iso){
 
         LinearLayout.LayoutParams W_W_1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         LinearLayout.LayoutParams M_W_N = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -57,6 +62,23 @@ public class KeyboardViewCreator {
                 btn.setAllCaps(false);
                 btn.setText(s);
                 btn.setLayoutParams(W_W_1);
+                btn.setOnClickListener(v -> {
+                    if(s.equals(activity.getResources().getString(R.string.key_caps))){
+                        List<View> children = UIUtils.getAllChildrenBFS(container);
+                        for(View letter : children){
+                            if(letter instanceof AppCompatButton) {
+                                AppCompatButton lbtn = (AppCompatButton) letter;
+                                String[] letters = "qwertzuiopüasdfghjklöäyxcvbnm".split("");
+                                String letterChar = lbtn.getText().toString().toLowerCase();
+                                if (Arrays.asList(letters).contains(letterChar)) {
+                                    lbtn.setText(UIUtils.swapCase(lbtn.getText().toString()));
+                                }
+                            }
+                        }
+                    } else {
+                        activity.keyInputCallback(s);
+                    }
+                });
                 if(s.equals("\uF30E")){
                     styleCapsButton(btn);
                 }
