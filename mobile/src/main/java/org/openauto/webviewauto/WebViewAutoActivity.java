@@ -35,6 +35,8 @@ public class WebViewAutoActivity extends CarActivity {
     public String currentURL = homeURL;
     public BrowserInputMode inputMode = BrowserInputMode.URL_INPUT_MODE;
     public String currentKeyboardLayout = "LATIN";
+    public String originalAgentString = "";
+    public String currentBrowserMode = "MOBILE";
 
     public List<String> urlHistory = new ArrayList<>();
 
@@ -152,6 +154,16 @@ public class WebViewAutoActivity extends CarActivity {
         browser_url_input.setText(url);
         //load the new url
         WebView wbb = (WebView)findViewById(R.id.webview_component);
+        //Add URLs for Desktop mode here
+        List<String> desktopModeURLs = new ArrayList<>();
+        //desktopModeURLs.add("");
+        if(desktopModeURLs.contains(url) && !currentBrowserMode.equals("DESKTOP")){
+            setDesktopMode();
+            currentBrowserMode = "DESKTOP";
+        } else {
+            setMobileMode();
+            currentBrowserMode = "MOBILE";
+        }
         wbb.loadUrl(url);
         //remember the current url
         currentURL = url;
@@ -159,6 +171,22 @@ public class WebViewAutoActivity extends CarActivity {
         if(!urlHistory.isEmpty() && !urlHistory.get(urlHistory.size()-1).equals(url)){
             urlHistory.add(url);
         }
+    }
+
+    private void setDesktopMode(){
+        WebView wbb = (WebView)findViewById(R.id.webview_component);
+        WebSettings wbset=wbb.getSettings();
+        originalAgentString = wbset.getUserAgentString();
+        wbset.setUserAgentString("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
+        wbset.setUseWideViewPort(true);
+        wbset.setLoadWithOverviewMode(true);
+    }
+    private void setMobileMode(){
+        WebView wbb = (WebView)findViewById(R.id.webview_component);
+        WebSettings wbset=wbb.getSettings();
+        wbset.setUserAgentString(originalAgentString);
+        wbset.setUseWideViewPort(false);
+        wbset.setLoadWithOverviewMode(false);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -174,9 +202,7 @@ public class WebViewAutoActivity extends CarActivity {
         CookieManager.getInstance().setAcceptThirdPartyCookies(wbb,true);
 
         //Uncomment these lines to emulate a desktop PC - Use for special requirements
-        //wbset.setUserAgentString("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
-        //wbset.setUseWideViewPort(true);
-        //wbset.setLoadWithOverviewMode(true);
+        //setDesktopMode();
 
         wbb.loadUrl(currentURL);
         urlHistory.add(currentURL);
