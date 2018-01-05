@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -167,8 +168,16 @@ public class WebViewAutoActivity extends CarActivity {
         WebView wbb = (WebView)findViewById(R.id.webview_component);
         WebSettings wbset=wbb.getSettings();
         wbset.setJavaScriptEnabled(true);
+        wbset.setDomStorageEnabled(true);
         wbb.setWebChromeClient(new WebChromeClient());
         wbb.setWebViewClient(new WebViewClient());
+        CookieManager.getInstance().setAcceptThirdPartyCookies(wbb,true);
+
+        //Uncomment these lines to emulate a desktop PC - Use for special requirements
+        //wbset.setUserAgentString("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
+        //wbset.setUseWideViewPort(true);
+        //wbset.setLoadWithOverviewMode(true);
+
         wbb.loadUrl(currentURL);
         urlHistory.add(currentURL);
 
