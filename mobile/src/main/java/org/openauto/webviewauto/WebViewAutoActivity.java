@@ -1,6 +1,7 @@
 package org.openauto.webviewauto;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,11 +35,12 @@ public class WebViewAutoActivity extends CarActivity {
     public String homeURL = "https://duckduckgo.com";
     public String currentURL = homeURL;
     public BrowserInputMode inputMode = BrowserInputMode.URL_INPUT_MODE;
-    public String currentKeyboardLayout = "LATIN";
     public String originalAgentString = "";
     public String currentBrowserMode = "MOBILE";
 
     public List<String> urlHistory = new ArrayList<>();
+
+    public KeyboardHandler handler = new KeyboardHandler();
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -209,12 +211,11 @@ public class WebViewAutoActivity extends CarActivity {
 
         //init ui elements
         final EditText browser_url_input = (EditText)findViewById(R.id.browser_url_input);
-        final LinearLayout keyboard = (LinearLayout)findViewById(R.id.browser_keyboard);
         browser_url_input.setText(currentURL);
 
         //init keyboard
-        keyboard.removeAllViews();
-        keyboard.addView(KeyboardHandler.createKeyboardView(this, fragment.getContext(), currentKeyboardLayout));
+        final LinearLayout keyboard = (LinearLayout)findViewById(R.id.browser_keyboard);
+        loadKeyboard(fragment.getContext());
 
         findViewById(R.id.browser_url_menu).setOnClickListener(view -> {
             //open menu -> Features todo: Favorites, Back, Forward etc.
@@ -260,6 +261,12 @@ public class WebViewAutoActivity extends CarActivity {
             wbb.evaluateJavascript("document.activeElement.form.submit();", null);
         });
 
+    }
+
+    public void loadKeyboard(Context context){
+        final LinearLayout keyboard = (LinearLayout)findViewById(R.id.browser_keyboard);
+        keyboard.removeAllViews();
+        keyboard.addView(handler.createKeyboardView(this, context));
     }
 
 }

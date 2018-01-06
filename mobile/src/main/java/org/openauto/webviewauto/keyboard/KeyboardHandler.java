@@ -21,6 +21,9 @@ import java.util.List;
  */
 public class KeyboardHandler {
 
+    private String languageIso = "EN";
+    private List<String> supportedIsos = Arrays.asList("EN", "RU");
+
     private static String[] row_1_shared = {"!","?","#","@","€","$","\u20BD","\"","=","§","&","°","`"};
     private static String[] row_2_shared = {"{","}","[","]","(",")","|","/","\\","<",">","~","´"};
     private static String[] row_3_shared = {"^","1","2","3","4","5","6","7","8","9","0","ß","'"};
@@ -28,17 +31,26 @@ public class KeyboardHandler {
     private static String[] row_4_latin = {"+","q","w","e","r","t","y","u","i","o","p","ü","%"};
     private static String[] row_5_latin = {"*","a","s","d","f","g","h","j","k","l","ö","ä",":"};
     private static String[] row_6_latin = {"\uF30E","z","x","c","v","b","n","m",",",".","-","_",";"};
-    private static String[] row_7_latin = {"http","://","www."," ",".com",".de",".org"};
+    private static String[] row_7_latin = {"\uF5CA", "http","://","www."," ",".com",".de",".org"};
 
     private static String[] row_4_russian = {"+","й","ц","у","к","е","н","г","ш","щ","з","х","ъ"};
     private static String[] row_5_russian = {"*","ф","ы","в","а","п","р","о","л","д","ж","э",":"};
     private static String[] row_6_russian = {"\uF30E","я","ч","с","м","и","т","ь","б","ю","-","_",";"};
-    private static String[] row_7_russian = {"http","://","www."," ",".com",".ru",".org"};
+    private static String[] row_7_russian = {"\uF5CA", "http","://","www."," ",".com",".ru",".org"};
 
     private static Object[] layout_latin = {row_1_shared, row_2_shared, row_3_shared, row_4_latin, row_5_latin, row_6_latin, row_7_latin};
     private static Object[] layout_russian = {row_1_shared, row_2_shared, row_3_shared, row_4_russian, row_5_russian, row_6_russian, row_7_russian};
 
-    public static View createKeyboardView(WebViewAutoActivity activity, Context context, String iso){
+    private void cycleLayout(){
+        int currentLayoutIndex = supportedIsos.indexOf(languageIso);
+        int nextIndex = currentLayoutIndex + 1;
+        if(nextIndex >= supportedIsos.size()){
+            nextIndex = 0;
+        }
+        languageIso = supportedIsos.get(nextIndex);
+    }
+
+    public View createKeyboardView(WebViewAutoActivity activity, Context context){
 
         LinearLayout.LayoutParams W_W_1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
         LinearLayout.LayoutParams M_W_N = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -48,7 +60,7 @@ public class KeyboardHandler {
         container.setLayoutParams(M_W_N);
 
         Object[] rows = layout_latin;
-        if(iso.equals("RUSSIAN")){
+        if(languageIso.equals("RU")){
             rows = layout_russian;
         }
 
@@ -63,24 +75,24 @@ public class KeyboardHandler {
                 btn.setText(s);
                 btn.setLayoutParams(W_W_1);
                 btn.setOnClickListener(v -> {
-                    if(s.equals(activity.getResources().getString(R.string.key_caps))){
+                    if(s.equals("\uF5CA")){
+                        cycleLayout();
+                        activity.loadKeyboard(context);
+                    }
+                    else if(s.equals(activity.getResources().getString(R.string.key_caps))){
                         List<View> children = UIUtils.getAllChildrenBFS(container);
                         for(View letter : children){
                             if(letter instanceof AppCompatButton) {
                                 AppCompatButton lbtn = (AppCompatButton) letter;
-                                String[] letters = "qwertzuiopüasdfghjklöäyxcvbnm".split("");
-                                String letterChar = lbtn.getText().toString().toLowerCase();
-                                if (Arrays.asList(letters).contains(letterChar)) {
-                                    lbtn.setText(UIUtils.swapCase(lbtn.getText().toString()));
-                                }
+                                lbtn.setText(UIUtils.swapCase(lbtn.getText().toString()));
                             }
                         }
                     } else {
                         activity.keyInputCallback(btn.getText().toString());
                     }
                 });
-                if(s.equals("\uF30E")){
-                    styleCapsButton(btn);
+                if(s.equals("\uF30E") || s.equals("\uF5CA")){
+                    styleIconButton(btn);
                 }
                 if(s.equals(" ")){
                     styleSpaceButton(btn);
@@ -93,7 +105,7 @@ public class KeyboardHandler {
         return container;
     }
 
-    private static void styleCapsButton(AppCompatButton btn){
+    private static void styleIconButton(AppCompatButton btn){
         Typeface typeface = ResourcesCompat.getFont(btn.getContext(), R.font.materialdesignicons);
         btn.setTypeface(typeface);
         ViewCompat.setBackgroundTintList(btn, ColorStateList.valueOf(0xff04786d));
