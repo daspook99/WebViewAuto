@@ -76,7 +76,7 @@ public class KeyboardHandler {
                             }
                         }
                     } else {
-                        activity.keyInputCallback(s);
+                        activity.keyInputCallback(btn.getText().toString());
                     }
                 });
                 if(s.equals("\uF30E")){
