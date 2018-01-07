@@ -22,7 +22,7 @@ import java.util.List;
 public class KeyboardHandler {
 
     private String languageIso = "EN";
-    private List<String> supportedIsos = Arrays.asList("EN", "RU");
+    private List<String> supportedIsos = Arrays.asList("EN", "RU", "HE");
 
     private static String[] row_1_shared = {"!","?","#","@","€","$","\u20BD","\"","=","§","&","°","`"};
     private static String[] row_2_shared = {"{","}","[","]","(",")","|","/","\\","<",">","~","´"};
@@ -38,8 +38,14 @@ public class KeyboardHandler {
     private static String[] row_6_russian = {"\uF30E","я","ч","с","м","и","т","ь","б","ю","-","_",";"};
     private static String[] row_7_russian = {"\uF5CA", "http","://","www."," ",".com",".ru",".org"};
 
+    private static String[] row_4_hebrew = {"+","ק","ר","א","ט","ו","ן","ם","פ","[","]","/",","};
+    private static String[] row_5_hebrew = {"*","ש","ד","ג","כ","ע","י","ח","ל","ך","ף",".",":"};
+    private static String[] row_6_hebrew = {"\uF30E", "ז","ס","ב","ה","נ","מ","צ","ת","ץ","-","_",";"};
+    private static String[] row_7_hebrew = {"\uF5CA", "http","://","www."," ",".com",".co.il",".org"};
+
     private static Object[] layout_latin = {row_1_shared, row_2_shared, row_3_shared, row_4_latin, row_5_latin, row_6_latin, row_7_latin};
     private static Object[] layout_russian = {row_1_shared, row_2_shared, row_3_shared, row_4_russian, row_5_russian, row_6_russian, row_7_russian};
+    private static Object[] layout_hebrew = {row_1_shared, row_2_shared, row_3_shared, row_4_hebrew, row_5_hebrew, row_6_hebrew, row_7_hebrew};
 
     private void cycleLayout(){
         int currentLayoutIndex = supportedIsos.indexOf(languageIso);
@@ -62,6 +68,9 @@ public class KeyboardHandler {
         Object[] rows = layout_latin;
         if(languageIso.equals("RU")){
             rows = layout_russian;
+        }
+        if(languageIso.equals("HE")){
+            rows = layout_hebrew;
         }
 
         for(Object row : rows){
