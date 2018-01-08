@@ -42,6 +42,25 @@ public class WebViewPhoneActivity extends AppCompatActivity {
 
         });
 
+
+        EditText url_to_car_text = findViewById(R.id.url_to_car_text);
+        Button url_to_car_button = findViewById(R.id.url_to_car_button);
+        url_to_car_button.setOnClickListener(v -> {
+            WebViewAutoActivity act = ActivityAccessHelper.getInstance().activity;
+            if(act != null){
+                act.sendURLToCar(url_to_car_text.getText().toString());
+            }
+        });
+
+        EditText text_to_car_text = findViewById(R.id.text_to_car_text);
+        Button text_to_car_button = findViewById(R.id.text_to_car_button);
+        text_to_car_button.setOnClickListener(v -> {
+            WebViewAutoActivity act = ActivityAccessHelper.getInstance().activity;
+            if(act != null){
+                act.sendStringToCar(text_to_car_text.getText().toString());
+            }
+        });
+
     }
 
     private void reloadFavList(){

@@ -5,8 +5,8 @@ import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import org.openauto.webviewauto.R;
@@ -79,7 +79,7 @@ public class KeyboardHandler {
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
             String[] row_ = (String[])row;
             for(String s : row_){
-                AppCompatButton btn = new AppCompatButton(context);
+                Button btn = new Button(context);
                 btn.setAllCaps(false);
                 btn.setText(s);
                 btn.setLayoutParams(W_W_1);
@@ -91,8 +91,8 @@ public class KeyboardHandler {
                     else if(s.equals(activity.getResources().getString(R.string.key_caps))){
                         List<View> children = UIUtils.getAllChildrenBFS(container);
                         for(View letter : children){
-                            if(letter instanceof AppCompatButton) {
-                                AppCompatButton lbtn = (AppCompatButton) letter;
+                            if(letter instanceof Button) {
+                                Button lbtn = (Button) letter;
                                 lbtn.setText(UIUtils.swapCase(lbtn.getText().toString()));
                             }
                         }
@@ -114,12 +114,12 @@ public class KeyboardHandler {
         return container;
     }
 
-    private static void styleIconButton(AppCompatButton btn){
+    private static void styleIconButton(Button btn){
         Typeface typeface = ResourcesCompat.getFont(btn.getContext(), R.font.materialdesignicons);
         btn.setTypeface(typeface);
         ViewCompat.setBackgroundTintList(btn, ColorStateList.valueOf(0xff04786d));
     }
-    private static void styleSpaceButton(AppCompatButton btn){
+    private static void styleSpaceButton(Button btn){
         ViewCompat.setBackgroundTintList(btn, ColorStateList.valueOf(0xff04786d));
     }
 

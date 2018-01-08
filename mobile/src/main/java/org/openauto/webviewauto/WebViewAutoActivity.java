@@ -47,6 +47,8 @@ public class WebViewAutoActivity extends CarActivity {
 
         //android.os.Debug.waitForDebugger();
 
+        ActivityAccessHelper.getInstance().activity = this;
+
         setTheme(R.style.AppTheme_Car);
         super.onCreate(bundle);
         setContentView(R.layout.activity_car_main);
@@ -143,6 +145,16 @@ public class WebViewAutoActivity extends CarActivity {
         LinearLayout keyboard = (LinearLayout)findViewById(R.id.browser_keyboard);
         webview.setVisibility(View.VISIBLE);
         keyboard.setVisibility(View.GONE);
+    }
+
+    public void sendURLToCar(String enteredText){
+        final EditText browser_url_input = (EditText)findViewById(R.id.browser_url_input);
+        browser_url_input.setText(enteredText);
+    }
+
+    public void sendStringToCar(String enteredText){
+        WebView wbb = (WebView)findViewById(R.id.webview_component);
+        wbb.evaluateJavascript("document.activeElement.value = '" + enteredText + "';", null);
     }
 
     public void keyInputCallback(String enteredKey){

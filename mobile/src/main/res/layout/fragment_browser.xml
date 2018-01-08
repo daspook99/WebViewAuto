@@ -13,9 +13,8 @@
         android:backgroundTint="@color/url_background_color"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/browser_url_menu"
-            app:font="@font/materialdesignicons"
             android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,9 +23,8 @@
             android:textColor="@android:color/white"
             android:text="@string/key_menu" />
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/browser_url_keyboard_toggle"
-            app:font="@font/materialdesignicons"
             android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,9 +42,8 @@
             android:ems="10"
             android:text="" />
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/browser_url_backspace"
-            app:font="@font/materialdesignicons"
             android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,9 +52,8 @@
             android:textColor="@android:color/white"
             android:text="@string/key_backspace" />
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/browser_url_ok"
-            app:font="@font/materialdesignicons"
             android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,9 +62,8 @@
             android:textColor="@android:color/white"
             android:text="@string/key_enter" />
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/browser_url_submit"
-            app:font="@font/materialdesignicons"
             android:fontFamily="@font/materialdesignicons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,11 +74,12 @@
 
     </LinearLayout>
 
-
     <WebView
         android:id="@+id/webview_component"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:visibility="visible">
     </WebView>
 
